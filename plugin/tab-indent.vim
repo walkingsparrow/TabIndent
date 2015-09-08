@@ -19,7 +19,7 @@ if !exists("g:TabIndentStyle")
   let g:TabIndentStyle = 1
 endif
 
-inoremap <silent> <Tab> <C-r>=<SID>TabOrIndent()<CR>
+inoremap <buffer> <silent> <Tab> <C-r>=<SID>TabOrIndent()<CR>
 
 function! <SID>TabOrIndent()
 
