@@ -19,7 +19,10 @@ if !exists("g:TabIndentStyle")
   let g:TabIndentStyle = 1
 endif
 
-inoremap <buffer> <silent> <Tab> <C-r>=<SID>TabOrIndent()<CR>
+augroup tab_emacs
+  autocmd!
+  autocmd FileType c,cpp,javascript,java,go,html inoremap <buffer> <silent> <Tab> <C-r>=<SID>TabOrIndent()<CR>
+augroup END
 
 function! <SID>TabOrIndent()
 
@@ -44,18 +47,18 @@ function! <SID>TabOrIndent()
 
     elseif g:TabIndentStyle == 2 || g:TabIndentStyle == "whitespace"
       if virtcol('.') <= indent(line('.'))
-	return indent 
+	return indent
       else
 	return real_tab
       endif
 
     elseif g:TabIndentStyle == 3 || g:TabIndentStyle == "startofline"
       if virtcol('.') <= indent(line('.')) || virtcol('.') == 1
-	return indent 
+	return indent
       else
 	return real_tab
       endif
-      
+
     endif
 
   else
